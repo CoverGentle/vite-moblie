@@ -1,12 +1,6 @@
 <template>
   <div>
-    登录
-    <n-button strong secondary>
-      Default
-    </n-button>
-    <n-button strong secondary type="error">
-      Error
-    </n-button>
+    <van-button type="primary">登录</van-button>
   </div>
 </template>
 
