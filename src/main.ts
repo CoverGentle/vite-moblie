@@ -8,6 +8,9 @@ import Vant from './ui/index';
 // 2. 引入组件样式
 import 'vant/lib/index.css';
 
+
+
+
 const app = createApp(App)
 app.use(router)
 app.use(Vant)
