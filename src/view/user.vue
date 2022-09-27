@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-button type="primary">登录</van-button>
+    geren
   </div>
 </template>
 

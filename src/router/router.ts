@@ -1,19 +1,39 @@
 // 路由配置文件
 
 import { App } from 'vue'
-import {createRouter,createWebHashHistory,RouteRecordRaw} from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 
-const routes:RouteRecordRaw[] = [
-  // {
-  //   path:'/',
-  //   redirect:'/home'
-  // },
+const routes: RouteRecordRaw[] = [
   {
-    path:'/',
-    name:'login',
-    component:()=>import('../view/login.vue')
+    path: '/',
+    redirect: '/home'
   },
+  {
+    path: '/home',
+    name: 'home',
+    meta: {
+      title: '首页'
+    },
+    component: () => import('../view/home.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '登录页'
+    },
+    component: () => import('../view/login.vue')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    meta: {
+      title: '个人中心'
+    },
+    component: () => import('../view/user.vue')
+  },
+
 ]
 
 
@@ -23,17 +43,22 @@ const router = createRouter({
 })
 
 
-// router.beforeEach((to,from,next)=>{
-//   if(to.path === "/login"){
-//     next()
-//   }else{
-//     if(localStorage.getItem('token')){
-//       next()
-//     }else{
-//       next("/login")
-//     }
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if(typeof (to.meta?.title) === 'string'){
+    document.title = to.meta?.title
+  }
+  next()
+
+  // if(to.path === "/login"){
+  //   next()
+  // }else{
+  //   if(localStorage.getItem('token')){
+  //     next()
+  //   }else{
+  //     next("/login")
+  //   }
+  // }
+})
 
 
 
