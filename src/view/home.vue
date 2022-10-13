@@ -8,7 +8,7 @@
 import { onMounted, reactive, ref, toRefs } from 'vue'
 import { wechatLogin } from '../untils/api/home'
 onMounted(() => {
-  wechatLoginInfo()
+  // wechatLoginInfo()
 })
 const wechatLoginInfo = () => {
   wechatLogin('code').then(res => {

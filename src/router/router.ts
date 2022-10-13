@@ -7,16 +7,32 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
-    path: '/home',
-    name: 'home',
-    meta: {
-      title: '首页'
-    },
-    component: () => import('../view/home.vue')
+    path:'/groundFrame',
+    name:'groundFrame',
+    component: () => import('../view/groundFrame.vue'),
+    children:[
+      {
+        path: '/user',
+        name: 'user',
+        meta: {
+          title: '个人中心'
+        },
+        component: () => import('../view/user.vue')
+      },
+      {
+        path: '/home',
+        name: 'home',
+        meta: {
+          title: '首页'
+        },
+        component: () => import('../view/home.vue')
+      },
+    ]
   },
+  
   {
     path: '/login',
     name: 'login',
@@ -25,14 +41,7 @@ const routes: RouteRecordRaw[] = [
     },
     component: () => import('../view/login.vue')
   },
-  {
-    path: '/user',
-    name: 'user',
-    meta: {
-      title: '个人中心'
-    },
-    component: () => import('../view/user.vue')
-  },
+  
 
 ]
 
