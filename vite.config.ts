@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  mode:'development',
+  mode:process.env.VITE_ENV,
   base: './',
   resolve:{
     alias:{
@@ -15,5 +15,6 @@ export default defineConfig({
   server: {
     open: true, //vite项目启动时自动打开浏览器
     hmr: true, //启用热更新
+    port:9090
   },
 })
