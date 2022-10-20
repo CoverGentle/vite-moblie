@@ -8,6 +8,9 @@ import Vant from './ui/index';
 // 2. 引入组件样式
 import 'vant/lib/index.css';
 
+// 引入vconsole
+// import Vconsole from 'vconsole'
+// let vConsole = new Vconsole()
 
 
 

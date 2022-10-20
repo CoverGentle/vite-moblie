@@ -5,23 +5,25 @@
 </template>
 
 <script setup lang='ts'>
-import {reactive, ref, toRefs} from 'vue'
+import {onMounted, reactive, ref, toRefs} from 'vue'
 import {getQueryString} from '../untils/commom/index'
 import { useRouter } from 'vue-router'
 import {wechatLogin} from '../untils/api/home'
 
-let code = getQueryString('code')
-console.log(code,'code');
+let codeData = getQueryString('code')
+console.log(codeData,'code');
 
-const getAuthInfo = async (code:string)=>{
-  const {data} = await wechatLogin(code)
-  console.log(data);
+const getAuthInfo = async ()=>{
+  let codeData = getQueryString('code')
+  console.log(codeData,'code');
+  const {data} = await wechatLogin({code:codeData})
   
+  console.log(data,'data');
 }
+onMounted(()=>{
+  getAuthInfo() 
+})
 
-if(code){
-  getAuthInfo(code)
-}
 
 
 const router = useRouter()
