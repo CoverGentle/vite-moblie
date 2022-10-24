@@ -9,15 +9,18 @@ import {onMounted, reactive, ref, toRefs} from 'vue'
 import {getQueryString} from '../untils/commom/index'
 import { useRouter } from 'vue-router'
 import {wechatLogin} from '../untils/api/home'
+import { useAccesstStore } from '../store/index'
 
 let codeData = getQueryString('code')
+const accessStore = useAccesstStore()
+
 console.log(codeData,'code');
 
 const getAuthInfo = async ()=>{
   let codeData = getQueryString('code')
   console.log(codeData,'code');
   const {data} = await wechatLogin({code:codeData})
-  
+  accessStore.setAccessToken(data.access_token)
   console.log(data,'data');
 }
 onMounted(()=>{
