@@ -9,3 +9,11 @@ export const wechatLogin = (data:{code:string})=>{
   })
 }
 
+// 获取用户信息
+export const getWxUserInfo = ()=>{
+  return request({
+    url:'/wechat/getWxUserInfo',
+    method:'get'
+  })
+}
+
