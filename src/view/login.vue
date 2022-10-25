@@ -21,9 +21,6 @@ const getAuthInfo = async ()=>{
   console.log(codeData,'code');
   const {data} = await wechatLogin({code:codeData})
   accessStore.setAccessToken(data.access_token)
-  console.log(data,'data');
-  // 获取用户信息接口
-  getWxUserInfo()
 }
 onMounted(()=>{
   getAuthInfo() 
