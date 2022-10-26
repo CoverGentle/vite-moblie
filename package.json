@@ -1,23 +1,30 @@
 {
-  "name": "vite-moblie",
+  "name": "公众号网页",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:pro": "vue-tsc --noEmit && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "less": "^4.1.3",
+    "pinia": "^2.0.23",
     "vant": "^3.6.2",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@types/node": "^18.7.23",
     "@vitejs/plugin-vue": "^3.1.0",
     "typescript": "^4.6.4",
+    "vconsole": "^3.14.7",
     "vite": "^3.1.0",
+    "vite-plugin-vconsole": "^1.2.2",
     "vue-tsc": "^0.40.4"
   }
 }
