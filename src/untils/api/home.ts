@@ -1,5 +1,13 @@
 import request from '../request/request'
 
+// 验证公众号
+export const getJssdkConfig = ()=>{
+  return request({
+    url:'/wechat/getJssdkConfig',
+    method:'get',
+  })
+}
+
 // 微信授权登录
 export const wechatLogin = (data:{code:string})=>{
   return request({

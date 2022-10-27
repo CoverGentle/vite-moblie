@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import { Button ,Tabbar, TabbarItem,PullRefresh,Toast } from 'vant';
+import { Button ,Tabbar, TabbarItem,PullRefresh,Toast,Swipe, SwipeItem,Icon  } from 'vant';
 
 const vant ={
   install:function(Vue:App){
@@ -8,6 +8,9 @@ const vant ={
     Vue.use(TabbarItem)
     Vue.use(PullRefresh)
     Vue.use(Toast)
+    Vue.use(Swipe)
+    Vue.use(SwipeItem)
+    Vue.use(Icon)
   }
 }
 export default vant
