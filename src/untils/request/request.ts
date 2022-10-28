@@ -37,5 +37,10 @@ instance.interceptors.response.use(
   }
 )
 
+export default <T = any>(config: AxiosRequestConfig) => {
+  return instance(config).then((res) => {
+    return res as unknown as T
+  })
+}
 
-export default instance
+// export default instance

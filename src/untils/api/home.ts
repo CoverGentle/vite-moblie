@@ -2,7 +2,7 @@ import request from '../request/request'
 
 // 验证公众号
 export const getJssdkConfig = ()=>{
-  return request({
+  return request<wxjssdk>({
     url:'/wechat/getJssdkConfig',
     method:'get',
   })
@@ -21,6 +21,15 @@ export const wechatLogin = (data:{code:string})=>{
 export const getWxUserInfo = () =>{
   return request({
     url:'/wechat/getWxUserInfo',
+    method:'get'
+  })
+}
+
+// 获取jsssdk的jsapiticket
+
+export const getJsApiTicket = () =>{
+  return request({
+    url:'/wechat/getTicket',
     method:'get'
   })
 }
