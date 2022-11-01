@@ -25,12 +25,13 @@ export const getWxUserInfo = () =>{
   })
 }
 
-// 获取jsssdk的jsapiticket
-
-export const getJsApiTicket = () =>{
+// 获取jssdk的jssapi_ticket
+export const getjssdkapiInfo = (data:{url:string})=>{
   return request({
-    url:'/wechat/getTicket',
-    method:'get'
+    url:'/wechat/getjssdkapiInfo',
+    method:'post',
+    data
   })
 }
+
 

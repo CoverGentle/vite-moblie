@@ -1,34 +1,34 @@
-import { getJssdkConfig } from '../api/home'
+import { getjssdkapiInfo } from '../api/home'
 
 
 const jssapiList = [
   'updateAppMessageShareData',
-  'updateTimelineShareData'
+  // 'updateTimelineShareData',
+  'onMenuShareAppMessage'
 ]
 class WxService {
   async config() {
-    const {signature,nonce,timestamp} = await getJssdkConfig()
+    const {data} = await getjssdkapiInfo({url:location.href.split("#")[0]})
+    console.log(data,'data---WxService');
+    console.log(location.href.split("#")[0],'location.href.split("#")[0]');
     wx.config({
       debug: false, // 开启调试模式,调用的所有 api 的返回值会在客户端 alert 出来，若要查看传入的参数，可以在 pc 端打开，参数信息会通过 log 打出，仅在 pc 端时才会打印。
-      appId: 'wxbdc937314035728b', // 必填，公众号的唯一标识
-      timestamp: timestamp, // 必填，生成签名的时间戳
-      nonceStr: nonce, // 必填，生成签名的随机串
-      signature: signature,// 必填，签名
+      appId: data.appId, // 必填，公众号的唯一标识
+      timestamp: data.timestamp, // 必填，生成签名的时间戳
+      nonceStr: data.noncestr, // 必填，生成签名的随机串
+      signature: data.signature,// 必填，签名
       jsApiList: jssapiList // 必填，需要使用的 JS 接口列表
     });
 
-    this.ready()
-    this.error()
     this.checkApi()
-    this.updateAppMessageShareData()
-    this.updateTimelineShareData()
-    
-  }
 
-  error(){
     wx.error(function (err:any) {
       console.error("error:", err);
     });
+    this.onMenuShareAppMessage()
+
+    
+    
   }
 
   ready() {
@@ -53,6 +53,24 @@ class WxService {
     });
   }
 
+  
+
+  // onMenuShareAppMessage
+
+  onMenuShareAppMessage(){
+    wx.ready(function(){
+      wx.onMenuShareAppMessage({ 
+        title: '测试标题', // 分享标题
+        desc: '测试成了把', // 分享描述
+        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
+        imgUrl: 'https://img1.baidu.com/it/u=3750288563,660898866&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500', // 分享图标
+        success: function () {
+          // 设置成功
+        }
+      })
+    })
+  }
+
 
   // updateAppMessageShareData自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
   updateAppMessageShareData(){
@@ -68,7 +86,7 @@ class WxService {
       })
     }); 
   }
-
+  // 
   updateTimelineShareData(){
     wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
       wx.updateTimelineShareData({ 
