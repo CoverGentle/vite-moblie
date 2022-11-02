@@ -6,3 +6,10 @@ interface wxjssdk {
   timestamp: string,
   echostr: string,
 }
+
+interface option{
+  title:string,
+  desc:string,
+  link:string,
+  imgUrl:string
+}

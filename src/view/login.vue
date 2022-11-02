@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-button type="primary" @click="jump">登录</van-button>
+    <!-- <van-button type="primary" @click="jump">登录</van-button> -->
   </div>
 </template>
 
@@ -23,6 +23,9 @@ const getAuthInfo = async ()=>{
   WxService.config()
   const {data} = await wechatLogin({code:codeData})
   accessStore.setAccessToken(data.access_token)
+  if(data){
+    router.push('/home')
+  }
 }
 onMounted(()=>{
   getAuthInfo() 
@@ -31,9 +34,9 @@ onMounted(()=>{
 
 
 const router = useRouter()
-const jump = ()=>{
-  router.push('/home')
-}
+// const jump = ()=>{
+//   router.push('/home')
+// }
 </script>
 
 <style lang='less' scoped> 

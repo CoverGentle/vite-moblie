@@ -25,10 +25,6 @@ class WxService {
     wx.error(function (err:any) {
       console.error("error:", err);
     });
-    this.onMenuShareAppMessage()
-
-    
-    
   }
 
   ready() {
@@ -57,13 +53,15 @@ class WxService {
 
   // onMenuShareAppMessage
 
-  onMenuShareAppMessage(){
+  // 'https://img1.baidu.com/it/u=3750288563,660898866&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500'
+  onMenuShareAppMessage(option:option){
+    const {title,desc,link,imgUrl} = option
     wx.ready(function(){
       wx.onMenuShareAppMessage({ 
-        title: '测试标题', // 分享标题
-        desc: '测试成了把', // 分享描述
-        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
-        imgUrl: 'https://img1.baidu.com/it/u=3750288563,660898866&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500', // 分享图标
+        title: title, // 分享标题
+        desc: desc, // 分享描述
+        link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
+        imgUrl: imgUrl, // 分享图标
         success: function () {
           // 设置成功
         }
