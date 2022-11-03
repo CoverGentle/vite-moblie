@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import {getQueryString} from '../untils/commom/index'
 
 export const useUserInfoStore = defineStore('userInfo', {
   state:()=>({
@@ -29,5 +30,7 @@ export const useUserInfoStore = defineStore('userInfo', {
     setheadimgurl(val:string){
       this.headimgurl = val
     }
+
+    
   }
 })

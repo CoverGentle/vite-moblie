@@ -69,6 +69,22 @@ class WxService {
     })
   }
 
+  // 获取地理位置接口
+  getLocation(){
+    wx.ready(function(){
+      wx.getLocation({
+        type: 'wgs84', // 默认为wgs84的 gps 坐标，如果要返回直接给 openLocation 用的火星坐标，可传入'gcj02'
+        success: function (res:any) {
+          var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+          var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+          var speed = res.speed; // 速度，以米/每秒计
+          var accuracy = res.accuracy; // 位置精度
+        }
+      });
+    })
+  }
+  
+
 
   // updateAppMessageShareData自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
   updateAppMessageShareData(){
