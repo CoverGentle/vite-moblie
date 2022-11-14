@@ -1,0 +1,53 @@
+stages:
+  - package
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+node-package:
+  tags:
+    - node_16_13
+  stage: package
+  script:
+    - export PATH=/var/node_v14/bin:$PATH 
+    - pwd
+    - echo 'This is a cloud step'
+    # 定义环境变量
+    - node -v
+    - npm -v
+    - yarn -v
+    # 删除上一步artifact
+    - rm -rf cloud cloud.tar.gz
+    # 安装依赖项
+    - npm install
+    # 打包编译
+    # - cnpm run build
+    - echo $env
+    - npm run cloud
+  artifacts: 
+    paths:
+      - cloud
+    expire_in: 1 day
+
+deploy-sit:
+  tags:
+    - node_14_17
+  stage: deploy
+  timeout: 3 hours 30 minutes
+  script:
+    - pwd
+    # 打压缩包
+    - tar -zcvf dist.tar.gz dist
+    # 上传服务器,此路径是服务器上打包文件存放地址
+    - scp dist.tar.gz $DEPLOY_USER@$DEV_HOST:/fusion-fin-web/fin-operation-web
+    # 回显，相当于打印console.log()
+    - echo 'publish web'
+    # 执行远程服务器的脚本，此路径是脚本存放地址，放在服务器上
+    # DEPLOY_USER：服务器用户名
+    # DEV_HOST：服务器域名
+    - ssh -t $DEPLOY_USER@$DEV_HOST '/fusion-fin-web/fin-operation-web/bin/publish.sh'
+  when: manual
+  only:
+    - /dev|^master_.*$/

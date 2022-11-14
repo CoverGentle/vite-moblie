@@ -17,8 +17,8 @@ export default({mode})=>{
         vue(),
         viteVConsole({
           entry: path.resolve('src/main.ts'), // 入口文件，或者可以使用这个配置: [path.resolve('src/main.js')]
-          localEnabled: mode === 'development', // 本地是否启用
-          enabled: mode === 'development', // 是否启用
+          localEnabled: mode === `${process.env.VITE_ENV}`, // 本地是否启用
+          enabled: mode === `${process.env.VITE_ENV}`, // 是否启用
           config: {
             maxLogNumber: 1000,
             theme: 'light' // 主题颜色 'dark'|'light'
